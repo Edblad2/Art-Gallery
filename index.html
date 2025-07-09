@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MT ArtGallery - Sharick Martínez</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: #FFFFFF;
+      color: #1C1E21;
+      margin: 0;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 200vh;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 50;
+      background-color: #FFFFFF;
+      border-bottom: 1px solid #DDDDE1;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1877F2;
+      text-transform: uppercase;
+    }
+    nav a {
+      color: #1C1E21;
+      margin-left: 1.5rem;
+      font-size: 1rem;
+      text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+    nav a:hover {
+      opacity: 1;
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 3rem 2rem;
+      background-color: #F0F2F5;
+      min-height: 60vh;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #1C1E21;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: #606770;
+      margin-bottom: 1.5rem;
+      max-width: 600px;
+      padding: 0 1rem;
+    }
+    .hero .btn {
+      background-color: #1877F2;
+      padding: 0.7rem 2rem;
+      border-radius: 5px;
+      color: #FFFFFF;
+      text-decoration: none;
+      font-weight: 700;
+      transition: background-color 0.3s;
+    }
+    .hero .btn:hover {
+      background-color: #166FE5;
+    }
+    .feed {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    .post {
+      background-color: #FFFFFF;
+      border: 1px solid #DDDDE1;
+      border-radius: 5px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+    .post:hover {
+      transform: translateY(-2px);
+    }
+    .post img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+    }
+    .post h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #1C1E21;
+    }
+    .post p {
+      font-size: 1rem;
+      color: #606770;
+      margin-bottom: 0.5rem;
+    }
+    .post .buy-btn {
+      background-color: #1877F2;
+      padding: 0.4rem 1rem;
+      border-radius: 5px;
+      color: #FFFFFF;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+    .post .buy-btn:hover {
+      background-color: #166FE5;
+    }
+    .about {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background-color: #FFFFFF;
+      border: 1px solid #DDDDE1;
+      border-radius: 5px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    .about h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #1C1E21;
+    }
+    .about .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .about .profile-img {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(45deg, #1877F2, #42B72A);
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      text-transform: uppercase;
+    }
+    .about .profile p {
+      font-size: 1rem;
+      color: #606770;
+      text-align: center;
+    }
+    .contact {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background-color: #FFFFFF;
+      border: 1px solid #DDDDE1;
+      border-radius: 5px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    .contact h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #1C1E21;
+    }
+    .contact .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .contact .social-icons img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+    .contact .social-icons img:hover {
+      transform: scale(1.1);
+    }
+    @media (max-width: 1024px) {
+      .hero { min-height: 50vh; padding: 2rem 1rem; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero p { font-size: 1rem; }
+      .post img { height: 200px; }
+    }
+    @media (max-width: 768px) {
+      header { flex-direction: column; text-align: center; }
+      nav a { margin: 0.5rem 0; }
+      .hero { min-height: 40vh; }
+      .hero h1 { font-size: 1.8rem; }
+      .hero p { font-size: 0.9rem; }
+      .feed, .about, .contact { margin: 1rem auto; }
+      .post img { height: 150px; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.5rem; }
+      .hero p { font-size: 0.8rem; }
+      .post img { height: 120px; }
+      .contact .social-icons { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container mx-auto flex justify-between items-center px-4">
+      <h1 class="logo">mt artgallery</h1>
+      <nav>
+        <a href="#feed" data-lang-es="Publicaciones" data-lang-en="Posts">Publicaciones</a>
+        <a href="#about" data-lang-es="Sobre Sharick" data-lang-en="About Sharick">Sobre Sharick</a>
+        <a href="#contact" data-lang-es="Contacto" data-lang-en="Contact">Contacto</a>
+        <button id="lang-toggle" class="hover:text-blue-600">en</button>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1 data-lang-es="Bienvenido a MT ArtGallery" data-lang-en="Welcome to MT ArtGallery">Bienvenido a MT ArtGallery</h1>
+      <p data-lang-es="Explora el arte de Sharick Martínez, una talentosa artista de 11°. Sus obras únicas están aquí para inspirarte." data-lang-en="Explore the art of Sharick Martínez, a talented 11th-grade artist. Her unique works are here to inspire you.">Explora el arte de Sharick Martínez, una talentosa artista de 11°. Sus obras únicas están aquí para inspirarte.</p>
+      <a href="#feed" class="btn" data-lang-es="Explorar" data-lang-en="Explore">Explorar</a>
+    </div>
+  </section>
+
+  <section id="feed" class="feed">
+    <div class="post">
+      <img src="https://source.unsplash.com/random/300x300/?drawing" alt="Obra 1">
+      <h3 data-lang-es="Obra 1 por Sharick" data-lang-en="Artwork 1 by Sharick">Obra 1 por Sharick</h3>
+      <p data-lang-es="Lápiz y acuarela, 2025 - $150" data-lang-en="Pencil and watercolor, 2025 - $150">Lápiz y acuarela, 2025 - $150</p>
+      <p data-lang-es="Un dibujo que captura la esencia de la naturaleza." data-lang-en="A drawing that captures the essence of nature.">Un dibujo que captura la esencia de la naturaleza.</p>
+      <a href="https://wa.me/+573107366068?text=Hola%2C%20estoy%20interesado%20en%20Obra%201" target="_blank" class="buy-btn" data-lang-es="Comprar" data-lang-en="Buy">Comprar</a>
+    </div>
+    <div class="post">
+      <img src="https://source.unsplash.com/random/300x300/?art" alt="Obra 2">
+      <h3 data-lang-es="Obra 2 por Sharick" data-lang-en="Artwork 2 by Sharick">Obra 2 por Sharick</h3>
+      <p data-lang-es="Tinta y acrílico, 2025 - $200" data-lang-en="Ink and acrylic, 2025 - $200">Tinta y acrílico, 2025 - $200</p>
+      <p data-lang-es="Una obra abstracta llena de energía." data-lang-en="An abstract artwork full of energy.">Una obra abstracta llena de energía.</p>
+      <a href="https://wa.me/+573107366068?text=Hola%2C%20estoy%20interesado%20en%20Obra%202" target="_blank" class="buy-btn" data-lang-es="Comprar" data-lang-en="Buy">Comprar</a>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <h2 data-lang-es="Sobre Sharick Martínez" data-lang-en="About Sharick Martínez">Sobre Sharick Martínez</h2>
+    <div class="profile">
+      <div class="profile-img">SM</div>
+      <p data-lang-es="Sharick Martínez, una talentosa artista de 11° que transforma sus emociones en obras visuales llenas de vida. Actualmente estudiando y desarrollando su pasión por el arte, su estilo fresco combina técnicas innovadoras." data-lang-en="Sharick Martínez, a talented 11th-grade artist who transforms her emotions into vibrant visual artworks. Currently studying and nurturing her passion for art, her fresh style blends innovative techniques.">Sharick Martínez, una talentosa artista de 11° que transforma sus emociones en obras visuales llenas de vida. Actualmente estudiando y desarrollando su pasión por el arte, su estilo fresco combina técnicas innovadoras.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2 data-lang-es="Conéctate con nosotros" data-lang-en="Connect with us">Conéctate con nosotros</h2>
+    <div class="social-icons">
+      <a href="https://tiktok.com/@mtartgallery" target="_blank"><img src="https://img.icons8.com/color/48/000000/tiktok.png" alt="TikTok"></a>
+      <a href="https://instagram.com/mtartgallery" target="_blank"><img src="https://img.icons8.com/color/48/000000/instagram.png" alt="Instagram"></a>
+      <a href="https://wa.me/+573107366068" target="_blank"><img src="https://img.icons8.com/color/48/000000/whatsapp.png" alt="WhatsApp"></a>
+    </div>
+  </section>
+
+  <script>
+    const langToggle = document.getElementById('lang-toggle');
+    let currentLang = 'es';
+    langToggle.addEventListener('click', () => {
+      currentLang = currentLang === 'es' ? 'en' : 'es';
+      langToggle.textContent = currentLang === 'es' ? 'en' : 'es';
+      document.querySelectorAll('[data-lang-es]').forEach(elem => {
+        elem.textContent = elem.getAttribute(`data-lang-${currentLang}`);
+      });
+    });
+  </script>
+</body>
+</html>
